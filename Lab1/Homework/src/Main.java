@@ -1,5 +1,4 @@
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
@@ -7,7 +6,6 @@ public class Main {
 
         int n, k;
         int rdm = 0;
-        Scanner sc = new Scanner(System.in);
 
         n = Integer.valueOf(args[0]);
         k = Integer.valueOf(args[1]);
