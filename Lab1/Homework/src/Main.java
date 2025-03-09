@@ -35,12 +35,13 @@ public class Main {
 
             Integer[] cliqueArr = clique.toArray(new Integer[clique.size()]);
             for(int i = 0; i < k; i++)
-                for(int j = i + 1; j < k; j++)
+                for(int j = i+1; j < k; j++)
                     a[cliqueArr[i]][cliqueArr[j]] = a[cliqueArr[j]][cliqueArr[i]] = 1;
+            for(int i=0; i < k;i++) System.out.println(cliqueArr[i] + " ");
 
             for(int i = 1; i <= n; i++)
                 for(int j = i + 1; j <= n; j++)
-                    if(!stable.contains(i) && !stable.contains(j))
+                    if(!stable.contains(i) && !stable.contains(j) || (!clique.contains(i) && !clique.contains(j)))
                     {
                         rdm = (int) (Math.random() * 2);
                         a[i][j] = a[j][i] = rdm;

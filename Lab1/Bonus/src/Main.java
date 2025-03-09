@@ -26,7 +26,7 @@ public class Main {
                     b[i][j] = 1 - a[i][j];
             int clica_b = Clique(b,n,k);
             if(clica_b == 0) System.out.println("Nu avem un set stabil pentru graful a de lungime minim k");
-            else System.out.println("Avem un set stabil pentru graful a de lungime minim k");
+                 System.out.println("Avem un set stabil pentru graful a de lungime minim k");
         }
     public static void printMatrix(int[][] a, int n)
     {
