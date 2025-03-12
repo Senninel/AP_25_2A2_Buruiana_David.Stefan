@@ -6,41 +6,39 @@ import java.util.Date;
 class Student  extends Person
 {
     private Long regNumber;
-
+    private Project[]  prefferedProjects;
+    int length = 0;
     /**
      * Construieste un obiect de tip student
      * @param name Numele studentului
      * @param regNumber Numarul de inregistrare unic
      * @param dob Data de nastere a studentului
      */
-    public Student(String name, Long regNumber, Date dob) {
+    public Student(String name, Long regNumber, Date dob, Project project) {
         this.name = name;
         this.regNumber = regNumber;
         this.dob = dob;
+        prefferedProjects = new Project[10];
+        prefferedProjects[length++] = project;
     }
 
 
-
-    /**
-     * Seteaza/schimba numele unui student
-     * @param name Numele nou
-     */
-    public void setName(String name) {
-        this.name = name;
+    public int getLength() {
+        return length;
     }
 
-    /**
-     * Primesti numele studentului
-     * @return Nume student
-     */
-    public String getName() {
-        return this.name;
+    public void setLength(int length) {
+        this.length = length;
     }
 
-    /**
-     * Seteaza/schimba regNumber la student
-     * @param regNumber Noul regNumber
-     */
+    public Project[] getPrefferedProjects() {
+        return prefferedProjects;
+    }
+
+    public void setPrefferedProjects(Project[] prefferedProjects) {
+        this.prefferedProjects = prefferedProjects;
+    }
+
     public void setRegNumber(Long regNumber) {
         this.regNumber = regNumber;
     }
@@ -57,6 +55,11 @@ class Student  extends Person
      * Primesti numele studentului impreuna cu regNumber sau
      * @return Nume student + regNumber
      */
+
+    public void addPrefferedProject(Project project)
+    {
+        prefferedProjects[length++] = project;
+    }
     @Override
     public String toString() {
         return "Studentul: " + this.name + ", cu reg number: " + this.regNumber + "\n";

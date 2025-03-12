@@ -22,6 +22,38 @@ class Problem
         teacherCount = 0;
     }
 
+    public Teacher[] getTeacherList() {
+        return teacherList;
+    }
+
+    public void setTeacherList(Teacher[] teacherList) {
+        this.teacherList = teacherList;
+    }
+
+    public Student[] getStudentList() {
+        return studentList;
+    }
+
+    public void setStudentList(Student[] studentList) {
+        this.studentList = studentList;
+    }
+
+    public int getTeacherCount() {
+        return teacherCount;
+    }
+
+    public void setTeacherCount(int teacherCount) {
+        this.teacherCount = teacherCount;
+    }
+
+    public int getStudentCount() {
+        return studentCount;
+    }
+
+    public void setStudentCount(int studentCount) {
+        this.studentCount = studentCount;
+    }
+
     /**
      * Adauga un student nou la problema
      * @param student
@@ -65,37 +97,5 @@ class Problem
         return persons;
     }
 
-    /**
-     * Aloca fiecarui student un proiect din lista de proiecte disponibila de la toti profesorii
-     * adaugati in problema, proiect diferit fata de ceilalti studenti.
-     */
-    public void allocateProjects()
-    {
-        Project[] allProjects = new Project[1024];
-        int count = 0;
-        for(int i=0; i < teacherList.length;i++)
-            if(teacherList[i] != null) {
-                for (int j = 0; j < teacherList[i].projectList.length; j++) {
-                    if (teacherList[i].projectList[j] != null) {
-                        boolean exists = false;
-                        for (int k = 0; k < count; k++) {
-                            if (allProjects[k].equals(teacherList[i].projectList[j])) {
-                                exists = true;
-                                break;
-                            }
-                        }
-                        if (!exists)
-                            allProjects[count++] = teacherList[i].projectList[j];
-                    }
-                }
-            }
-
-        if(count < studentCount) {
-            System.out.println("Nu sunt destule proiecte pentru studenti");
-            return;
-        }
-        for(int i=0; i < studentCount; i++)
-            System.out.println("Studentul: " + studentList[i] + " primeste proiectul: " + allProjects[i] + "\n");
-    }
 }
 

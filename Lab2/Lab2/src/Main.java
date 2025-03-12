@@ -15,9 +15,6 @@ public class Main {
      * @param args Fara argumente
      */
     public static void main(String[] args) {
-        Student student1 = new Student("Andrei Popescu", 5041020L, new Date());
-        Student student2 = new Student("Gica Popescu", 5042030L, new Date());
-
 
 
         Project project1 = new Project("Formula I", Types.PRACTICAL);
@@ -29,6 +26,10 @@ public class Main {
         Project project3 = new Project("Formula III", Types.PRACTICAL);
         Project project4 = new Project("Formula IV", Types.THEORETICAL);
 
+        Student student1 = new Student("Andrei Popescu", 5041020L, new Date(), project1);
+        student1.addPrefferedProject(project4);
+        Student student2 = new Student("Gica Popescu", 5042030L, new Date(),  project2);
+
         teacher1.addProject(project3);
         teacher2.addProject(project4);
 
@@ -37,8 +38,9 @@ public class Main {
         problem.addStudent(student2);
         problem.addTeacher(teacher1);
         problem.addTeacher(teacher2);
+        Solution solution = new Solution(problem);
 
-        problem.allocateProjects();
+        solution.AllocateStudents();
     }
 
 }
