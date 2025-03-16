@@ -27,7 +27,6 @@ public class Main {
         Project project4 = new Project("Formula IV", Types.THEORETICAL);
 
         Student student1 = new Student("Andrei Popescu", 5041020L, new Date(), project1);
-        student1.addPrefferedProject(project4);
         Student student2 = new Student("Gica Popescu", 5042030L, new Date(),  project2);
 
         teacher1.addProject(project3);
@@ -41,6 +40,7 @@ public class Main {
         Solution solution = new Solution(problem);
 
         solution.AllocateStudents();
+        solution.verifyHall();
     }
 
 }

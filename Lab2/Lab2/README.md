@@ -19,4 +19,7 @@ am facut un vector in care am trecut proiectele de la toti profesorii fara sa se
 unul de studenti unde sunt ordonati studentii in functie de preferinte lor(cei cu nr cat mai 
 mic de proiecte preferate vor avea prioriate). Dupa sortare se va trece prin lista de studenti
 si se vor aloca proiecte din cele preferate care nu sunt luate deja(vectorul usedProject verifica
-asta). Si la final se afiseaza lista cu student + proiect repartizat.
+asta). Si la final se afiseaza lista cu student + proiect repartizat. Algoritmul ce foloseste teorema lui Hall face backtracking pentru a genera orice subset de studenti
+din problema si pentru acel subset verifica daca  lungimea listei cu toate proiectele preferate ale lor si se regasesc si in proiectele profesorilor din problema este mai
+mare decat numarul de studenti din acel subset. In caz contrar nu se poate satisface 
+relatia si astfel nu se pot aloca proiecte.

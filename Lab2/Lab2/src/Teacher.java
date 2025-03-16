@@ -36,7 +36,9 @@ class Teacher extends Person
             }
         System.out.println("Nu am putut adauga proiectul, e full lista");
     }
-
+    public Project[] getProjectList(){
+        return projectList;
+    }
     /**
      *
      * @return la nume profesor si lista de proiecte

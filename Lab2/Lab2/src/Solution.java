@@ -5,11 +5,84 @@ class Solution
     Student[] studentsOrdered;
     Project[] projectsOrdered;
     int length = 0;
-
+    int[] st;
     public Solution(Problem problem)
     {
         this.problem = problem;
         studentsOrdered = new Student[problem.getStudentCount()];
+    }
+    private boolean foundProjectTeacherList(Project p){
+        Teacher[] teacherList = problem.getTeacherList();
+        for(int i = 0; i < teacherList.length; i++){
+            if(teacherList[i] != null){
+                Project projectList[] = teacherList[i].getProjectList();
+                for(int k=0;k<projectList.length;k++){
+                    if(projectList[k] != null){
+                        if(projectList[k].equals(p)){
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+    public int Valid(int top)
+    {
+        for(int i=1;i<top;i++)
+            if(st[i] == st[top]) return 0;
+        return 1;
+    }
+    public int verificareSubset(int top)
+    {
+        Project[] allProjects = new Project[1024];
+        int len = 0;
+        Student[] students = new Student[1024];
+        Student[] studentsList = problem.getStudentList();
+        int studentLen = 0;
+        for(int i=1;i<=top;i++)
+            students[studentLen++] = studentsList[st[i] - 1];
+        for(int i=0;i<students.length;i++)
+            if(students[i] != null){
+                Project prefferedProjects[] = students[i].getPrefferedProjects();
+                for(int j=0;j < students[i].getLength();j++){
+                    boolean found = false;
+                    for(int k=0; k<allProjects.length;k++){
+                        if(allProjects[k] != null){
+                            if(allProjects[k].equals(prefferedProjects[j])){
+                                found = true;
+                            }
+                        }
+                    }
+                    if(found == false && foundProjectTeacherList(prefferedProjects[j])) allProjects[len++] = prefferedProjects[j];
+                }
+            }
+        if(len < studentLen) return 1;
+        return 0;
+    }
+    public void verifyHall()
+    {
+        int top, cand;
+        int gasit = 0;
+        top = 0;
+        st = new int[problem.getStudentCount() + 1];
+        st[++top] = 0;
+        while(top > 0 && gasit == 0)
+        {
+            cand = 0;
+            while(cand == 0 && st[top] < problem.getStudentCount())
+            {
+                st[top]++;
+                cand = Valid(top);
+            }
+            if(cand == 0) top--;
+            else if(top > 0) gasit = verificareSubset(top);
+            else st[++top] = 0;
+        }
+        if(gasit == 1)
+            System.out.println("Nu se poate aloca");
+        else
+            System.out.println("Se poate aloca");
     }
     public void AllocateStudents()
     {
