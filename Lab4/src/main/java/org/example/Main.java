@@ -79,7 +79,7 @@ public class Main {
                 if(!l.equals(r) && randNumber.nextInt(2) == 1){
                     DefaultWeightedEdge edge = graphRoute.addEdge(l,r);
                     if(edge != null){
-                        double weight = 1 + randNumber.nextInt(10);
+                        double weight = 1 + randNumber.nextInt(5);
                         graphRoute.setEdgeWeight(edge,weight);
                     }
                 }
@@ -173,7 +173,7 @@ public class Main {
                 if(!l.equals(r) && randNumber.nextInt(2) == 1){
                     DefaultWeightedEdge edge = graphRoute.addEdge(l,r);
                     if(edge != null){
-                        double weight = 1 + randNumber.nextInt(10);
+                        double weight = 1 + randNumber.nextInt(5);
                         graphRoute.setEdgeWeight(edge,weight);
                     }
                 }
