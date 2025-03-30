@@ -1,36 +1,51 @@
 package org.example;
 
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 import java.util.List;
-import java.util.List;
-import java.time.LocalDate;
 import java.util.List;
 import java.time.LocalDate;
 import java.awt.Desktop;
-import java.io.File;
-import java.io.IOException;
 
-
+interface Command{
+    void execute(String[] args, ImageRepository repo) throws Exception;
+}
 
 public class Main {
     public static void main(String[] args) {
-            String path = "C:\\Users\\Sennin\\Downloads\\image.png";
-            ImageRepository imageRepository = new ImageRepository();
+        Scanner scanner = new Scanner(System.in);
+        ImageRepository repo = new ImageRepository();
 
-            File imageFile = new File(path);
-            if (imageFile.exists()) {
-                imageRepository.addImage(imageFile);
+        while(true){
+            System.out.println(">> ");
+            String line = scanner.nextLine();
+            if(line.equals("exit")){
+                break;
+            }
 
-                File toOpen = imageRepository.getImage(0);
-                if (Desktop.isDesktopSupported() && toOpen != null) {
-                    try {
-                        Desktop.getDesktop().open(toOpen);
-                    } catch (IOException e) {
-                        System.out.println("Eroare deschidere imagine: " + e.getMessage());
-                    }
+            String[] tokens = line.split(" ");
+            String cmdName = tokens[0];
+            String[] cmdArgs = Arrays.copyOfRange(tokens, 1, tokens.length);
+
+            Command cmd = CommandFactory.getCommand(cmdName);
+            if(cmd != null){
+                try{
+                    cmd.execute(cmdArgs, repo);
                 }
-            } else {
-                System.out.println("Image file nu exista.");
+                catch(IllegalAccessException e){
+                    System.out.println("Eroarea argumente: " + e.getMessage());
+                }
+                catch(IOException e){
+                    System.out.println("Eroare IO: " + e.getMessage());
+                }
+                catch(Exception e){
+                    System.out.println("Eroare neasteptata: " + e.getMessage());
+                }
+            }
+            else{
+                System.out.println("Comanda nucunsocuta");
             }
         }
+
+    }
 }
