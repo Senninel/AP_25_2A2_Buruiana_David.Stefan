@@ -12,9 +12,10 @@ import java.util.Map;
 public class ReportCommand implements Command{
     public void execute(String[] args, ImageRepository repo) throws Exception{
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_32);
-        cfg.setClassLoaderForTemplateLoading(
-                ReportCommand.class.getClassLoader(), "templates"
-        );
+        File templatesDir = new File("templates");
+        System.out.println("Looking for templates in: " + templatesDir.getAbsolutePath());
+        cfg.setDirectoryForTemplateLoading(new File("templates"));
+
 
         cfg.setDefaultEncoding("UTF-8");
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
